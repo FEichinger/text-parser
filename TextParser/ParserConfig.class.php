@@ -18,7 +18,8 @@
 		 *   Default: array()
 		 * 
 		 * @param array $charReplaceMap optional
-		 *   An array containing keys to be replaced in all TextItems with values via str_replace(array_keys($charReplaceMap), array_values($charReplaceMap))
+		 *   An array containing keys to be replaced in all TextItems with values
+		 *     via `str_replace(array_keys($charReplaceMap), array_values($charReplaceMap))`
 		 *   Default: array()
 		 * 
 		 */
@@ -43,7 +44,8 @@
 		
 		/**
 		 * @param TagDefinition $tagDefinition
-		 *   A TagDefinition object to add to the ParserConfig. It will be assigned a new OpCode and added to the lookup tables.
+		 *   A TagDefinition object to add to the ParserConfig. It will be assigned a new OpCode and added to the lookup
+		 *     tables.
 		 * 
 		 */
 		public function addTagDefinition(TagDefinition $tagDefinition) {
@@ -57,7 +59,7 @@
 			$this->lookupBeginBracket[$tagDefinition->tagBrackets["begin"]][] = $this->maxOpCode;
 			$this->lookupEndBracket[$tagDefinition->tagBrackets["end"]][] = $this->maxOpCode;
 			$this->lookupName[$tagDefinition->name][] = $this->maxOpCode;
-			if($tagDefinition->hasAttribute($tagDefinition->name)) $this->lookupTagNameAttributes[] = $this->maxOpcode;
+			if($tagDefinition->hasAttribute($tagDefinition->name)) $this->lookupTagNameAttributes[] = $this->maxOpCode;
 		}
 		
 		/**
@@ -93,7 +95,9 @@
 		 *   The opening bracket of the searched-for tag.
 		 * 
 		 * @param string $name optional
-		 *   The name of the searched-for tag. This function specifically matches for substrings of `$name` in the name lookup table. Performance is decreased heavily (unless `$name == null`). This should only be used for determining whether to give up parsing a non-viable tag.
+		 *   The name of the searched-for tag. This function specifically matches for substrings of `$name` in the name
+		 *     lookup table. Performance is decreased heavily (unless `$name == null`). This should only be used for
+		 *     determining whether to give up parsing a non-viable tag.
 		 *   Default: null
 		 * 
 		 * @param char $endBracket optional
@@ -126,7 +130,8 @@
 		
 		/**
 		 * @param int $opCode
-		 *   The OpCode for which the TagDefinition is requested. Note: This returns the same TagDefinition for an opening or closing tag, make sure to maintain this difference on the receiving end.
+		 *   The OpCode for which the TagDefinition is requested. Note: This returns the same TagDefinition for an opening tag
+		 *     and its closing tag, make sure to maintain this difference on the receiving end.
 		 * 
 		 * @retval TagDefinition or null
 		 *   Returns the TagDefinition if one is found, returns `null` if there is no TagDefinition for this OpCode.
